@@ -1,0 +1,33 @@
+{
+    "capabilities":
+    [
+        {
+            "browserName": "firefox",
+            "acceptSslCerts": true,
+            "javascriptEnabled": true,
+            "takesScreenshot": false,
+            "firefox_profile": "",
+            "browser-version": "28",  
+            "platform": "MAC OS X",                     
+            "maxInstances": 5
+        },
+        {
+            "browserName": "chrome",
+			"browser-version": "34",
+            "maxInstances": 5,
+            "platform": "MAC OS X"
+        }
+    ],
+    "configuration":
+    {
+        "_comment" : "This is configuration for the grid node on MAC OS X",
+        "cleanUpCycle": 2000,
+        "timeout": 30000,
+        "port": 5555,
+        "proxy": "org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
+        "host": localhost,
+        "register": true,
+        "hubPort": 4444,
+        "maxSessions": 5
+    }
+}

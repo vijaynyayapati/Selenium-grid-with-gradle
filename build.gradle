@@ -1,0 +1,85 @@
+apply plugin: 'eclipse'
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+
+sourceSets {
+    functional {
+
+        compileClasspath = sourceSets.main.output + configurations.testRuntime
+        runtimeClasspath = output + sourceSets.main.output + configurations.testRuntime
+
+        java {
+            srcDir 'src/test/java/functional'
+        }
+        
+    }
+}
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.5'
+    testCompile 'junit:junit:4.11'
+    testCompile 'org.seleniumhq.selenium:selenium-server:2.41.0'
+    testCompile 'org.seleniumhq.selenium:selenium-java:2.41.0'
+    testCompile 'org.seleniumhq.selenium:selenium-support:2.41.0'
+    testCompile 'org.seleniumhq.selenium:selenium-ie-driver:2.41.0'
+    testCompile 'org.seleniumhq.selenium:selenium-firefox-driver:2.41.0'
+    testCompile 'org.seleniumhq.selenium:selenium-chrome-driver:2.41.0'
+    testCompile 'org.seleniumhq.selenium:selenium-remote-driver:2.41.0'
+    testCompile 'org.seleniumhq.selenium:selenium-api:2.41.0'
+    testCompile 'org.fluentlenium:fluentlenium-core:0.10.0'
+    testCompile 'org.fluentlenium:fluentlenium:0.5.4'
+    testCompile 'org.fluentlenium:fluentlenium-festassert:0.10.0'    
+}
+
+
+tasks.withType(Test) {
+    // run tests with -info or -debug option to get logging
+    jvmArgs '-Xms128m', '-Xmx1024m', '-XX:MaxPermSize=128m'    
+    systemProperties['hubIP'] = '127.0.0.1'
+    systemProperties['hubPort'] = '4444'
+    systemProperties['testURL'] = 'http://danmurphys.com.au/dm/home.jsp'
+    systemProperties['windowXPosition'] = '40'
+    systemProperties['windowYPosition'] = '40'
+    systemProperties['windowWidth'] = '900'
+    systemProperties['windowHeight'] = '600'    
+}
+
+task functional(type: Test) {
+    testClassesDir = sourceSets.functional.output.classesDir
+    classpath = sourceSets.functional.runtimeClasspath
+}
+
+task shutDownHub(type: Exec) {
+	commandLine './shutDownHub.sh'
+}
+
+task startWebDriverGridHub(type: Exec) {
+	commandLine './startWebDriverGridHub.sh'
+}
+
+task startWebDriverGridNode(type: Exec) {
+	commandLine './startWebDriverGridNode.sh'
+}
+
+task runAllTestsInFirefox(type: Test) << {
+    maxParallelForks = 2
+    systemProperties['browser'] = 'Firefox'
+    include '**/DanMurphysHighValue*.class'
+    reports.junitXml.destination = "$buildDir/test-results/HighValueTestsFF"  
+    reports.html.destination = "$buildDir/test-results/HighValueTestsFF"
+}
+runAllTestsInFirefox.dependsOn startWebDriverGridHub, startWebDriverGridNode
+
+
+task runAllTestsInChrome(type: Test) << {
+    maxParallelForks = 2
+    systemProperties['browser'] = 'Chrome'
+    include '**/DanMurphysHighValue*.class'
+    reports.junitXml.destination = "$buildDir/test-results/HighValueTestsCH"  
+    reports.html.destination = "$buildDir/test-results/HighValueTestsCH"
+}
+runAllTestsInChrome.dependsOn startWebDriverGridHub, startWebDriverGridNode
