@@ -12,6 +12,7 @@ echo "*"
 echo "*********************************************"
 echo ""
 
+jarfile=selenium-server-2.41.0.jar
 
 if [ -z "${JAVA_HOME+xxx}" ]; then
   echo JAVA_HOME is not set at all;

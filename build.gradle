@@ -5,7 +5,6 @@ repositories {
     mavenCentral()
 }
 
-
 sourceSets {
     functional {
 
@@ -65,21 +64,18 @@ task startWebDriverGridNode(type: Exec) {
 	commandLine './startWebDriverGridNode.sh'
 }
 
-task runAllTestsInFirefox(type: Test) << {
+task runAllTestsInFirefox(type: Test, dependsOn: [startWebDriverGridHub, startWebDriverGridNode]) << {
     maxParallelForks = 2
     systemProperties['browser'] = 'Firefox'
     include '**/DanMurphysHighValue*.class'
     reports.junitXml.destination = "$buildDir/test-results/HighValueTestsFF"  
     reports.html.destination = "$buildDir/test-results/HighValueTestsFF"
 }
-runAllTestsInFirefox.dependsOn startWebDriverGridHub, startWebDriverGridNode
 
-
-task runAllTestsInChrome(type: Test) << {
+task runAllTestsInChrome(type: Test, dependsOn: [startWebDriverGridHub, startWebDriverGridNode]) << {
     maxParallelForks = 2
     systemProperties['browser'] = 'Chrome'
     include '**/DanMurphysHighValue*.class'
     reports.junitXml.destination = "$buildDir/test-results/HighValueTestsCH"  
     reports.html.destination = "$buildDir/test-results/HighValueTestsCH"
 }
-runAllTestsInChrome.dependsOn startWebDriverGridHub, startWebDriverGridNode
