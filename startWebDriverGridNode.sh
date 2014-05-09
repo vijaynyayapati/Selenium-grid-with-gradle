@@ -14,7 +14,8 @@ echo ""
 
 export run_directory=./test_lib
  
-jarfile=selenium-server-standalone-2.41.0.jar 
+jarfile=selenium-server-standalone-2.41.0.jar
+chromedriverbin=../src/test/tools/chromedriver 
 
 if [ -z "${JAVA_HOME+xxx}" ]; then
   echo JAVA_HOME is not set at all;
@@ -27,7 +28,7 @@ echo $PATH
 
 cd $run_directory
 
-nohup $JAVA_HOME/bin/java -jar $jarfile -role node -nodeConfig ../nodeConfigMacOSX.json
+nohup $JAVA_HOME/bin/java -jar $jarfile -role node -nodeConfig ../nodeConfigMacOSX.json -Dwebdriver.chrome.driver=$chromedriverbin
 
 echo 'Done'
 exit

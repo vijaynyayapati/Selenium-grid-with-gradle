@@ -7,7 +7,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -19,14 +18,14 @@ public class WebDriverManager {
 			.synchronizedList(new LinkedList<Browser>());
 	public static final String FIREFOX_DRIVER = "Firefox";
 	public static final String CHROME_DRIVER = "Chrome";
-	private static final String DEFAULT_DRIVER = FIREFOX_DRIVER;
+	private static final String DEFAULT_DRIVER = CHROME_DRIVER;
 	protected static RemoteWebDriver driver;
 	public static int DEFAULT_IMPLICIT_WAIT = 30;
 	protected static String mainHandle = "";
 	protected static String mainWindowTitle = "";
 	protected static Set<String> handleCache = new HashSet<String>();
 
-	private static ThreadLocal<Browser> webDriver = new ThreadLocal<Browser>() {
+	private ThreadLocal<Browser> webDriver = new ThreadLocal<Browser>() {
 		@Override
 		protected Browser initialValue() {
 			Browser browsers = getInstance();
@@ -43,7 +42,7 @@ public class WebDriverManager {
 		}
 	};
 
-	private static Browser create() throws Exception {
+	private Browser create() throws Exception {
 		String driverType = getDriverType();
 		System.out.println("Initialising " + driverType);
 		if (TYPE_TO_FACTORY_MAP.containsKey(driverType)) {
@@ -56,7 +55,7 @@ public class WebDriverManager {
 				  Integer.parseInt( System.getProperty("hubPort"))));
 	}
 
-	private static Browser getInstance() {
+	private Browser getInstance() {
 		try {
 			return create();
 		} catch (Exception e) {
@@ -64,16 +63,12 @@ public class WebDriverManager {
 		}
 	}
 
-	public static Browser browser() {
+	public Browser browser() {
 		return webDriver.get();
 	}
 
-	public static WebDriver getWebDriver() {
+	public WebDriver getWebDriver() {
 		return browser().getWebDriver();
-	}
-
-	public static void closeWebDriver() {
-		browser().getWebDriver().quit();
 	}
 
 	private static String getDriverType() {
@@ -102,20 +97,20 @@ public class WebDriverManager {
 		//TODO add a javascript executor to get window focus
 	}
 	
-	public static void closeAllBrowserWindows() {
-		Set<String> handles = getWebDriver().getWindowHandles();
+	public void closeAllBrowserWindows(WebDriver driver) {
+		Set<String> handles = driver.getWindowHandles();
 		if ( handles.size() > 1 ) {
 			System.out.println("Closing " + handles.size() + " window(s).");
 			for ( String windowId : handles ) {
 				System.out.println("-- Closing window handle: " + windowId );
-				getWebDriver().switchTo().window( windowId ).close();
+				driver.switchTo().window( windowId ).close();
 			}
 		} else if ( handles.size()==1 ) {
 			System.out.println("Closing last open window.");
 		} else {
 			System.out.println("There were no window handles to close.");
 		}
-		getWebDriver().quit();
+		driver.quit();
 	}
 	
 }

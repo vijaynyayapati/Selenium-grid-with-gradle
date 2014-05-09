@@ -9,7 +9,6 @@ public class DanMurphysHomePage extends BasePage {
 
 	private static final String SEARCH_FOR = "#search-input";
 	private static final String SEARCH = ".search-btn";
-	private static final String BRAND = "brand";
 	private static final String PRODUCT_COUNT = ".product-count";
 
 	public DanMurphysHomePage(WebDriver driver) {
@@ -29,7 +28,7 @@ public class DanMurphysHomePage extends BasePage {
 	}
 
 	public DanMurphysHomePage addItemToShoppingCartFromAdvertisedOffers() {
-		findFirst(ANCHORTAG, withClass().contains("btn-purchase")).click();
+		findFirst(ANCHORTAG, withClass().contains("btn-purchase1")).click();
 		verifyItemAddedToCart();
 		return this;
 	}

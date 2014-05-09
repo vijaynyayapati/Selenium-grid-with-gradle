@@ -4,7 +4,7 @@
     "maxSessions": 3,
     "port": 4444,
     "cleanupCycle": 5000,
-    "timeout": 10000,
+    "timeout": 30000,
     "browserTimeout": 60000,
     "newSessionWaitTimeout": -1,
     "servlets": [],

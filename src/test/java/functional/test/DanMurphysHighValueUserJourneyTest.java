@@ -11,7 +11,7 @@ import functional.testdata.Order;
 
 @RunWith(ConcurrentTestRunner.class)
 public class DanMurphysHighValueUserJourneyTest extends BaseTestSetup {
-
+	
 	@Test
 	public void guest_addingItemThroughRecommendedList_clickAndCollect_singleAddress_usingCC_qtyBottles() {
 		Order order = Order.clickAndCollectDeliveryWithPostcodeAndSuburb();
