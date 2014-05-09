@@ -49,8 +49,8 @@ task functional(type: Test) {
     classpath = sourceSets.functional.runtimeClasspath
 }
 
-task shutDownHub(type: Exec) {
-	commandLine './shutDownHub.sh'
+task shutDownNodeAndHub(type: Exec) {
+	commandLine './shutDownNodeAndHub.sh'
 }
 
 task startWebDriverGridHub(type: Exec) {
