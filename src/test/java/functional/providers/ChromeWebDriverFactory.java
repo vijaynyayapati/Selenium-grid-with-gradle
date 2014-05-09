@@ -24,10 +24,10 @@ public class ChromeWebDriverFactory implements WebDriverFactory {
 		dc.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
 		dc.setCapability( "takesScreenshot", true );
 		dc.setCapability( "webdriver.remote.quietExceptions", false );
-		dc.setBrowserName("firefox");
+		dc.setBrowserName("chrome");
 		driver = new RemoteWebDriver( new URL("http://" + host + ":" + port + "/wd/hub"), dc );
 		driver.manage().timeouts().implicitlyWait( DEFAULT_IMPLICIT_WAIT, TimeUnit.MILLISECONDS );
-		WebDriverManager.positionMainHandle();
+		WebDriverManager.positionMainHandle(driver);
 		return driver;
 	}
 

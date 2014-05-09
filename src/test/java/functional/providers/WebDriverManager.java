@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -18,7 +19,7 @@ public class WebDriverManager {
 			.synchronizedList(new LinkedList<Browser>());
 	public static final String FIREFOX_DRIVER = "Firefox";
 	public static final String CHROME_DRIVER = "Chrome";
-	private static final String DEFAULT_DRIVER = CHROME_DRIVER;
+	private static final String DEFAULT_DRIVER = FIREFOX_DRIVER;
 	protected static RemoteWebDriver driver;
 	public static int DEFAULT_IMPLICIT_WAIT = 30;
 	protected static String mainHandle = "";
@@ -80,7 +81,7 @@ public class WebDriverManager {
 		return System.getProperties().getProperty("browser", DEFAULT_DRIVER);
 	}	
 
-	public static void positionMainHandle() {
+	public static void positionMainHandle(WebDriver driver) {
 		handleCache = driver.getWindowHandles();
 		if ( handleCache.size() == 0 ) {
 			mainHandle = "";
@@ -97,30 +98,30 @@ public class WebDriverManager {
 			int fromTop = Integer.parseInt( System.getProperty("windowYPosition") );
 			int width = Integer.parseInt( System.getProperty("windowWidth") );
 			int height = Integer.parseInt( System.getProperty("windowHeight") );
-			setWindowPosition( mainHandle, width, height, fromLeft + testXOffset, fromTop );
+			setWindowPosition( mainHandle, width, height, fromLeft + testXOffset, fromTop , driver);
 		}
 	}
 
-	public static void setWindowPosition(String handle, int width, int height, int fleft, int ftop) {
+	public static void setWindowPosition(String handle, int width, int height, int fleft, int ftop, WebDriver driver) {
 		driver.switchTo().window( handle ).manage().window().setPosition( new Point(fleft, ftop) );
 		driver.switchTo().window( handle ).manage().window().setSize( new Dimension( width, height) );
 		//TODO add a javascript executor to get window focus
 	}
 	
 	public static void closeAllBrowserWindows() {
-		Set<String> handles = driver.getWindowHandles();
+		Set<String> handles = getWebDriver().getWindowHandles();
 		if ( handles.size() > 1 ) {
 			System.out.println("Closing " + handles.size() + " window(s).");
 			for ( String windowId : handles ) {
 				System.out.println("-- Closing window handle: " + windowId );
-				driver.switchTo().window( windowId ).close();
+				getWebDriver().switchTo().window( windowId ).close();
 			}
 		} else if ( handles.size()==1 ) {
 			System.out.println("Closing last open window.");
 		} else {
 			System.out.println("There were no window handles to close.");
 		}
-		driver.quit();
+		getWebDriver().quit();
 	}
 	
 }

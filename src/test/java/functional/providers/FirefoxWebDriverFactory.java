@@ -23,7 +23,7 @@ public class FirefoxWebDriverFactory implements WebDriverFactory {
 		try {
 			driver = new RemoteWebDriver( new URL("http://" + host + ":" + port + "/wd/hub"), dc );
 			driver.manage().timeouts().implicitlyWait( DEFAULT_IMPLICIT_WAIT, TimeUnit.MILLISECONDS );
-			WebDriverManager.positionMainHandle();
+			WebDriverManager.positionMainHandle(driver);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

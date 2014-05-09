@@ -27,7 +27,7 @@ public class IEWebDriverFactory implements WebDriverFactory {
 		System.setProperty("webdriver.ie.driver", pathToIEDriver(props));
 		driver = new RemoteWebDriver( new URL("http://" + host + ":" + port + "/wd/hub"), dc );
 		driver.manage().timeouts().implicitlyWait( DEFAULT_IMPLICIT_WAIT, TimeUnit.MILLISECONDS );
-		WebDriverManager.positionMainHandle();
+		WebDriverManager.positionMainHandle(driver);
 		return driver;
 	}
 

@@ -12,11 +12,22 @@ echo "*"
 echo "*********************************************"
 echo ""
 
-jarfile=selenium-server-2.41.0.jar
+export run_directory=./test_lib
+ 
+jarfile=selenium-server-standalone-2.41.0.jar 
 
 if [ -z "${JAVA_HOME+xxx}" ]; then
   echo JAVA_HOME is not set at all;
   exit 1  
 fi
 
-$JAVA_HOME/bin/java -jar $jarfile -role node -nodeConfig nodeConfigMacOSX.json -Dwebdriver.chrome.driver=chromedriver
+echo $JAVA_HOME
+export PATH="$JAVA_HOME/bin:$PATH"
+echo $PATH
+
+cd $run_directory
+
+nohup $JAVA_HOME/bin/java -jar $jarfile -role node -nodeConfig ../nodeConfigMacOSX.json
+
+echo 'Done'
+exit

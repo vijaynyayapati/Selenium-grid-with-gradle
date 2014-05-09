@@ -1,15 +1,15 @@
 {
     "_comment" : "This is configuration for the grid hub on OSX.",
-    "host": localhost,
-    "maxSessions": 5,
+    "hubHost": 127.0.0.1,
+    "maxSessions": 4,
     "port": 4444,
     "cleanupCycle": 5000,
-    "timeout": 300000,
+    "timeout": 30,
     "newSessionWaitTimeout": -1,
     "servlets": [],
     "prioritizer": null,
     "capabilityMatcher": "org.openqa.grid.internal.utils.DefaultCapabilityMatcher",
     "throwOnCapabilityNotPresent": true,   
     "nodePolling": 180000,
-    "platform": "MAC OS X"
+    "platform": "MAC"
 }
