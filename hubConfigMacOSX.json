@@ -1,10 +1,11 @@
 {
     "_comment" : "This is configuration for the grid hub on OSX.",
     "hubHost": 127.0.0.1,
-    "maxSessions": 4,
+    "maxSessions": 3,
     "port": 4444,
     "cleanupCycle": 5000,
-    "timeout": 30,
+    "timeout": 10000,
+    "browserTimeout": 60000,
     "newSessionWaitTimeout": -1,
     "servlets": [],
     "prioritizer": null,

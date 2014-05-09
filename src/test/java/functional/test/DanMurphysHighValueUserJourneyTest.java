@@ -23,20 +23,11 @@ public class DanMurphysHighValueUserJourneyTest extends BaseTestSetup {
 				.enterPaymentDetailsAndConfirmOrder(order);
 	}
 	
-	
 	@Test
 	public void subscribedUser_addingFromSearchGallery_standard_delivery_singleAddress_usingPayPal_qtyBottles() {
 		Order order = Order.standardDeliveryWithPostcodeAndSuburb();
 		launchDanMurphysOnline().searchFor("Red Wine").addItemToShoppingCart()
 				.viewTheCartAndValidateItems()
-				.enterDeliveryDetailsAndProceedToCheckout(order);
-	}
-
-	@Test
-	public void subscribedUser_addingItemFromProductDetail_deliveryNextDay_usingCC_qtyBottles() {
-		Order order = Order.nextDayDeliveryWithPostcodeAndSuburb();
-		launchDanMurphysOnline().viewProductDetailsOfFirstItemInGallery()
-				.addItemToShoppingCart().viewTheCartAndValidateItems()
 				.enterDeliveryDetailsAndProceedToCheckout(order);
 	}
 

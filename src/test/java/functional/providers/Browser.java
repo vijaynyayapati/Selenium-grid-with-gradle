@@ -10,7 +10,7 @@ public class Browser {
 
 	public Browser(WebDriver webDriver) {
 		this.webDriver = webDriver;
-		//setWindowSize();
+		setWindowSize();
 	}
 
 	public WebDriver getWebDriver() {

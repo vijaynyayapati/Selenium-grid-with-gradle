@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src/test/java/functional"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="lib" path="/Users/vijaytw/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.5/6b262da268f8ad9eff941b25503a9198f0a0ac93/slf4j-api-1.7.5.jar" sourcepath="/Users/vijaytw/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.5/654135274d4c27132ea208a4ec07f344bdb83bcb/slf4j-api-1.7.5-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/vijaytw/.gradle/caches/modules-2/files-2.1/junit/junit/4.11/4e031bb61df09069aeb2bffb4019e7a5034a4ee0/junit-4.11.jar" sourcepath="/Users/vijaytw/.gradle/caches/modules-2/files-2.1/junit/junit/4.11/28e0ad201304e4a4abf999ca0570b7cffc352c3c/junit-4.11-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/vijaytw/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium.grid/selenium-grid-hub/1.0.5/59e2390bc0125b45ebedf4cda5e587cdef3dddf1/selenium-grid-hub-1.0.5.jar" sourcepath="/Users/vijaytw/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium.grid/selenium-grid-hub/1.0.5/ffbbfa142a36b6e825d6be5879d7640800f5db7f/selenium-grid-hub-1.0.5-sources.jar"/>

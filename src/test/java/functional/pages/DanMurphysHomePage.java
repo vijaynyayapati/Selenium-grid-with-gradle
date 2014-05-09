@@ -44,7 +44,7 @@ public class DanMurphysHomePage extends BasePage {
 //		mouseHover(alcoholType);
 //		waitForElementVisible("[alt=" + brandOrMake + "]");
 //		find("[alt=" + brandOrMake + "]").click();
-		goTo("https://localhost:8443/sparkling-champagne/brand-yellowglen");
+		goTo("https://www.danmurphys.com.au/champagne-sparkling/brand-bollinger");
 	}
 
 	public ProductDetails viewProductDetailsOfFirstItemInGallery() {
@@ -53,7 +53,6 @@ public class DanMurphysHomePage extends BasePage {
 	}
 
 	private void viewProductDetailsForAnItem() {
-		find(SPAN, withClass().contains(BRAND)).click();
-		waitForPageToLoad();
+		goTo("https://www.danmurphys.com.au/product/DM_780180/yarnbomb-mclaren-vale-shiraz");
 	}
 }

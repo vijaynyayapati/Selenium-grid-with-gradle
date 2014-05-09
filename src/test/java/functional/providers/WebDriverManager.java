@@ -25,7 +25,6 @@ public class WebDriverManager {
 	protected static String mainHandle = "";
 	protected static String mainWindowTitle = "";
 	protected static Set<String> handleCache = new HashSet<String>();
-	public static int testXOffset = 0; //default value
 
 	private static ThreadLocal<Browser> webDriver = new ThreadLocal<Browser>() {
 		@Override
@@ -94,11 +93,6 @@ public class WebDriverManager {
 		} else {
 			mainHandle = driver.switchTo().defaultContent().getWindowHandle();
 			mainWindowTitle = driver.switchTo().defaultContent().getTitle();
-			int fromLeft = Integer.parseInt( System.getProperty("windowXPosition") );
-			int fromTop = Integer.parseInt( System.getProperty("windowYPosition") );
-			int width = Integer.parseInt( System.getProperty("windowWidth") );
-			int height = Integer.parseInt( System.getProperty("windowHeight") );
-			setWindowPosition( mainHandle, width, height, fromLeft + testXOffset, fromTop , driver);
 		}
 	}
 
