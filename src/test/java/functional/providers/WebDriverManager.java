@@ -1,5 +1,6 @@
 package functional.providers;
 
+import java.io.File;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -7,9 +8,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
 import functional.providers.Browser;
 
 public class WebDriverManager {
@@ -24,6 +25,19 @@ public class WebDriverManager {
 	protected static String mainHandle = "";
 	protected static String mainWindowTitle = "";
 	protected static Set<String> handleCache = new HashSet<String>();
+	private static final String pathToScreenshotDirForWindows = "\\build\\";
+	private static final String pathToScreenshotDirForMacAndLinux = "//build//";
+	
+	public static Map<String, String> getScreenShotDirectory(){
+		Map<String, String> pathToScreenshotDir = new HashMap<String, String>();
+		pathToScreenshotDir.put("Windows XP", pathToScreenshotDirForWindows);
+		pathToScreenshotDir.put("Mac OS X", pathToScreenshotDirForMacAndLinux);
+		pathToScreenshotDir.put("Linux", pathToScreenshotDirForMacAndLinux);
+		return pathToScreenshotDir;
+	}
+	
+	protected static String screenshotDirectory = System.getProperty("user.dir")
+			+ getScreenShotDirectory().get(OS.getOsName());
 
 	private ThreadLocal<Browser> webDriver = new ThreadLocal<Browser>() {
 		@Override
@@ -90,12 +104,6 @@ public class WebDriverManager {
 			mainWindowTitle = driver.switchTo().defaultContent().getTitle();
 		}
 	}
-
-	public static void setWindowPosition(String handle, int width, int height, int fleft, int ftop, WebDriver driver) {
-		driver.switchTo().window( handle ).manage().window().setPosition( new Point(fleft, ftop) );
-		driver.switchTo().window( handle ).manage().window().setSize( new Dimension( width, height) );
-		//TODO add a javascript executor to get window focus
-	}
 	
 	public void closeAllBrowserWindows(WebDriver driver) {
 		Set<String> handles = driver.getWindowHandles();
@@ -112,5 +120,19 @@ public class WebDriverManager {
 		}
 		driver.quit();
 	}
-	
+
+	public static void silentlySaveScreenshotWith(WebDriver driver, String description) {
+		try {
+			FileUtils.copyFile(grabScreenshot(driver), new File(screenshotDirectory
+					+ description + ".png"));
+		} catch (Exception ex) {
+			throw new RuntimeException(ex);
+		}
+	}
+
+	private static File grabScreenshot(WebDriver driver) {
+		File screenshot = ((TakesScreenshot) driver)
+				.getScreenshotAs(OutputType.FILE);
+		return screenshot;
+	}
 }

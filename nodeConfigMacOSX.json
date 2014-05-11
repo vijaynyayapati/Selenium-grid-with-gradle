@@ -5,7 +5,7 @@
             "browserName": "firefox",
             "acceptSslCerts": true,
             "javascriptEnabled": true,
-            "takesScreenshot": false,
+            "takesScreenshot": true,
             "firefox_profile": "",
             "browser-version": "28",  
             "platform": "MAC",                     
@@ -14,6 +14,7 @@
         {
             "browserName": "chrome",
 			"browser-version": "34",
+			"takesScreenshot": true,
             "maxInstances": 3,
             "platform": "MAC"
         }

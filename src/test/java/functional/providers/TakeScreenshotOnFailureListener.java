@@ -11,14 +11,10 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.TakesScreenshot;
 
-public class TakeScreenshotOnFailRule extends TestWatcher {
+public class TakeScreenshotOnFailureListener extends TestWatcher {
 	protected WebDriver _driver;
 	private static final String pathToScreenshotDirForWindows = "\\build\\";
 	private static final String pathToScreenshotDirForMacAndLinux = "//build//";
-	
-	public TakeScreenshotOnFailRule(WebDriver driver){
-		_driver = driver;
-	}
 	
 	protected String screenshotDirectory = System.getProperty("user.dir")
 			+ getScreenShotDirectory().get(OS.getOsName());
@@ -31,7 +27,7 @@ public class TakeScreenshotOnFailRule extends TestWatcher {
 		pathToScreenshotDir.put("Linux", pathToScreenshotDirForMacAndLinux);
 		return pathToScreenshotDir;
 	}
-
+	
 	@Override
 	protected void failed(Throwable e, Description description) {
 		super.failed(e, description);
