@@ -9,17 +9,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.apache.commons.io.FileUtils;
+import org.junit.rules.TestWatcher;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.RemoteWebDriver;
+
 import functional.providers.Browser;
 
-public class WebDriverManager {
+public class WebDriverManager extends TestWatcher{
 
 	private static List<Browser> allBrowsers = Collections
 			.synchronizedList(new LinkedList<Browser>());
 	public static final String FIREFOX_DRIVER = "Firefox";
 	public static final String CHROME_DRIVER = "Chrome";
-	private static final String DEFAULT_DRIVER = CHROME_DRIVER;
+	private static final String DEFAULT_DRIVER = FIREFOX_DRIVER;
 	protected static RemoteWebDriver driver;
 	public static int DEFAULT_IMPLICIT_WAIT = 30;
 	protected static String mainHandle = "";
