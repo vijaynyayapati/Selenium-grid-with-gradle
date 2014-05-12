@@ -28,7 +28,7 @@ public class DanMurphysHomePage extends BasePage {
 	}
 
 	public DanMurphysHomePage addItemToShoppingCartFromAdvertisedOffers() {
-		findFirst(ANCHORTAG, withClass().contains("btn-purchase1")).click();
+		findFirst(ANCHORTAG, withClass().contains("btn-purchase")).click();
 		verifyItemAddedToCart();
 		return this;
 	}
