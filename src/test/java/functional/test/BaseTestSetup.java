@@ -13,15 +13,15 @@ import functional.pages.DanMurphysHomePage;
 public abstract class BaseTestSetup extends WebDriverManager {
 
 	WebDriver driver;
-	private String watchedLog;
+	private String testName;
 	
 	@Rule
 	public TestWatcher watchman= new TestWatcher(){
 		@Override
 	      protected void failed(Throwable e, Description description) {
 			  super.failed(e, description);
-	          watchedLog = description.getMethodName();
-	          silentlySaveScreenshotWith(driver, watchedLog);
+			  testName = description.getMethodName();
+	          silentlySaveScreenshotWith(driver, testName);
 	      }
 		
 		@Override

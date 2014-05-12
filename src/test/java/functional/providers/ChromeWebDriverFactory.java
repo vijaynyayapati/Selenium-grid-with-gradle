@@ -30,14 +30,14 @@ public class ChromeWebDriverFactory implements WebDriverFactory {
 		return driver;
 	}
 
-	private static void putChromeBinaryInChromeOptions(
+	private void putChromeBinaryInChromeOptions(
 			HashMap<String, Object> chromeOptions, PropertyManager props)
 			throws IOException {
 		chromeOptions
 				.put("binary", props.getPropertyValue("chrome.binarypath"));
 	}
 
-	private static String pathToChromeDriver(PropertyManager props)
+	private String pathToChromeDriver(PropertyManager props)
 			throws IOException {
 		return props.getAbsolutePathForProperty("chrome.driverpath");
 	}
