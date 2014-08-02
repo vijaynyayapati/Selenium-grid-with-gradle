@@ -9,13 +9,13 @@
             "firefox_profile": "",
             "browser-version": "28",  
             "platform": "MAC",                     
-            "maxInstances": 3
+          	"maxInstances": 1
         },
         {
             "browserName": "chrome",
 			"browser-version": "34",
 			"takesScreenshot": true,
-            "maxInstances": 3,
+            "maxInstances": 1,
             "platform": "MAC"
         }
     ],
