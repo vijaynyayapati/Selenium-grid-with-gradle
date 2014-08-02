@@ -5,22 +5,22 @@ This is a framework I created for Selenium with gradle. The framework uses the p
 
 To run the tests you need to launch the Hub and the node. You can do so by running the following commands
 
--gradle startWebDriverGridHub
+- gradle startWebDriverGridHub
 
--On another terminal type gradle startWebDriverGridNode
+- On another terminal type gradle startWebDriverGridNode
 
--Note that you will need to change the permissions of two shell scripts to be able to run these gradle tasks
+- Note that you will need to change the permissions of two shell scripts to be able to run these gradle tasks
 
--you can do so by running the following command
+- you can do so by running the following command
 
--chmod 755 startWebDriverGridHub.sh (Same for the Node shell script)
+- chmod 755 startWebDriverGridHub.sh (Same for the Node shell script)
 
--To run the tests, use the following commands
---gradle runAllTestsInFirefox
+- To run the tests, use the following commands
+-- gradle runAllTestsInFirefox
 or
---gradle runAllTestsInChrome
+-- gradle runAllTestsInChrome
 
--There is also a shutDownNodeAndHub task which can be invoked as a gradle task.
+- There is also a shutDownNodeAndHub task which can be invoked as a gradle task.
 
--I would like to automate the starting and stopping of the hub and nodes via gradle tasks. Will do that soon.
+- I would like to automate the starting and stopping of the hub and nodes via gradle tasks. Will do that soon.
 
